@@ -29,7 +29,7 @@ public class SubscriberStepDefinition {
 
     @Given("a subscriber with an {string} main address in France")
     public void a_subscriber_with_an_active_main_address_in_France(String query) {
-        this.subscriber = this.subscriberRepository.save(new Subscriber("Gennivilliers", "active"));
+        this.subscriber = this.subscriberRepository.save(new Subscriber("Gennivilliers", query));
     }
 
     @When("the advisor connected to {string} changes the subscriber address")
