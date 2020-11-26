@@ -1,4 +1,4 @@
-package com.test.ibrax;
+package com.test.ibrax.bdd;
 
 
 import com.test.ibrax.documents.Subscriber;
@@ -29,13 +29,13 @@ public class SubscriberStepDefinition {
 
     @Given("a subscriber with an {string} main address in France")
     public void a_subscriber_with_an_active_main_address_in_France(String query) {
-      this.subscriber = this.subscriberRepository.save(new Subscriber("Gennivilliers", query));
-     }
+        this.subscriber = this.subscriberRepository.save(new Subscriber("Gennivilliers", "active"));
+    }
 
     @When("the advisor connected to {string} changes the subscriber address")
     public void the_advisor_connected_to_channel_changes_the_subscriber_address(String username) {
         User user = this.userRepository.findByUsername(username);
-        if(user!=null) {
+        if (user != null) {
             this.subscriber.setAddress("Saint denis");
             this.subscriber.setStatus("inactive");
         }
@@ -44,12 +44,12 @@ public class SubscriberStepDefinition {
 
     @Then("the changed subscriber address is recorded on all of the subscriber contracts")
     public void the_changed_subscriber_address_is_recorded_on_all_of_the_subscriber_contracts() {
-      this.subscriberRepository.save(this.subscriber);
+        this.subscriberRepository.save(this.subscriber);
     }
 
     @And("an address modification movement is created")
     public void an_address_modification_movement_is_created() {
-       Subscriber subscriber1 =  subscriberRepository.findByAddress("Saint denis");
+        Subscriber subscriber1 = subscriberRepository.findByAddress("Saint denis");
         Assert.assertTrue(subscriber1.getStatus().equals("inactive"));
     }
 

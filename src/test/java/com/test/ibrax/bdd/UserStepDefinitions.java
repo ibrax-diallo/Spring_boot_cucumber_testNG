@@ -1,4 +1,4 @@
-package com.test.ibrax;
+package com.test.ibrax.bdd;
 
 import com.test.ibrax.documents.User;
 import com.test.ibrax.repositories.UserRepository;
