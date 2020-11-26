@@ -12,13 +12,24 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "subscribers")
 public class Subscriber extends BaseEntity {
 
-    private String address;
+    private String phone;
+
+    private String zipCode;
+
+    private String city;
+
+    private String street;
 
     private String status;
 
-    public Subscriber(String address, String status) {
+    public Subscriber(String phone, String zipCode, String city, String street, String status) {
+        this.phone = phone;
 
-        this.address = address;
+        this.zipCode = zipCode;
+
+        this.city = city;
+
+        this.street = street;
 
         this.status = status;
 

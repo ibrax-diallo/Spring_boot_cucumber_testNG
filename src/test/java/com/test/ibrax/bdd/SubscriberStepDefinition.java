@@ -29,14 +29,16 @@ public class SubscriberStepDefinition {
 
     @Given("a subscriber with an {string} main address in France")
     public void a_subscriber_with_an_active_main_address_in_France(String query) {
-        this.subscriber = this.subscriberRepository.save(new Subscriber("Gennivilliers", query));
+        this.subscriber = this.subscriberRepository.save(new Subscriber("0707070707", "92230", "Gennivilliers", "52 rue test", query));
     }
 
     @When("the advisor connected to {string} changes the subscriber address")
     public void the_advisor_connected_to_channel_changes_the_subscriber_address(String username) {
         User user = this.userRepository.findByUsername(username);
         if (user != null) {
-            this.subscriber.setAddress("Saint denis");
+            this.subscriber.setCity("Saint denis");
+            this.subscriber.setZipCode("93200");
+            this.subscriber.setStreet("22 rue test");
             this.subscriber.setStatus("inactive");
         }
 
@@ -49,7 +51,7 @@ public class SubscriberStepDefinition {
 
     @And("an address modification movement is created")
     public void an_address_modification_movement_is_created() {
-        Subscriber subscriber1 = subscriberRepository.findByAddress("Saint denis");
+        Subscriber subscriber1 = subscriberRepository.findByPhone("0707070707");
         Assert.assertTrue(subscriber1.getStatus().equals("inactive"));
     }
 
